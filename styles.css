@@ -111,7 +111,6 @@ section {
 content {
     font-size: 1rem;
     color: grey;
-    margin-top: 0.5rem; 
     margin-bottom: 0.5rem; 
     display: block;
 }
@@ -153,6 +152,23 @@ work-header:hover {
 }
 work-header i {
     margin-left: 0.5rem; /* Add space between the text and the icon */
+}
+
+link-text {
+    color: white; /* Default link color */
+    text-decoration: none; /* Remove underline */
+}
+link-text:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+link-text i {
+    margin-left: 0.5rem; /* Add space between the text and the icon */
+}
+@media (max-width: 700px) {
+    link-text {
+        font-size: 0.8rem; /* Reduce font size for smaller screens */
+    }
 }
 highlight-link {
     color: #478CCF; /* Default link color */
