@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'SF Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-section {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 1rem; /* Optional: Adds space between columns */
+}
+
+@media (max-width: 700px) {
+    .profile-section {
+        display: flex;
+        flex-direction: column; /* Stacks items vertically */
+    }
+}
+
+.profile-image {
+    margin-block-start: 0.5rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensures the image fits well within the circle */
+}
+
+/* Default behavior for screens wider than 700px */
+@media (min-width: 700px) {
+    .profile-image {
+        float: right; 
+        margin-right: 1rem;
+
+    }
+}
+
+.naming-section {
+    margin-top: 0.3rem;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+}
+
+@media (max-width: 700px) {
+    .naming-section {
+        align-items: center; /* Center items horizontally on smaller screens */
+    }
+}
+
+
+.container {
+    max-width: 620px;
+    width: 100%;
+    padding: 2rem;
+    text-align: left;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem; /* Space after header */
+}
+
+image-container {
+    float: left;
+    font-size: 2rem;
+    text-align: left;
+}
+
+name1 {
+    float: left;
+    font-size: 2rem;
+    text-align: left;
+}
+
+profile-text {
+    float: left;
+    font-size: 1rem;
+    color: grey;
+    text-align: left;
+}
+.contact-container {
+    display: flex;
+    justify-content:space-around; /* Center items horizontally */
+    gap: 0.5rem; /* Space between items */
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem; /* Space between sections */
+}
+
+.highlight {
+    color: white; /* Example color, adjust as needed */
+}
+
+ header2 {
+    font-size: 2rem;
+    margin-bottom: 1rem; /* Space below section title */
+}
+
+content {
+    font-size: 1rem;
+    color: grey;
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem; 
+    display: block;
+}
+.timeline {
+    margin-block-start: 1rem;
+}
+.section-segment, .project {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    margin-bottom: 2rem; /* Space between experiences and projects */
+}
+
+.section-segment h3, .project h3 {
+    font-size: 1.5rem;
+    color: grey;
+}
+
+.section-segment p, .project p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem; /* Space between paragraphs */
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+work-header {
+    color: white; /* Default link color */
+    text-decoration: none; /* Remove underline */
+}
+work-header:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+work-header i {
+    margin-left: 0.5rem; /* Add space between the text and the icon */
+}
+highlight-link {
+    color: #478CCF; /* Default link color */
+    text-decoration: none; /* Remove underline */
+}
+
+highlight-link:hover {
+    text-decoration: underline; /* Underline on hover */
+    cursor: pointer;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1.2rem;
+    }
+
+    section h2 {
+        font-size: 1.5rem;
+    }
+
+    .section-segment h3, .project h3 {
+        font-size: 1.2rem;
+    }
+}
