@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-primary: #f0ede6;
+  --color-muted: #4a4a4a;
+  --color-accent: #f5a623;
+  --color-rule: rgba(240, 237, 230, 0.15);
+}
+
+* {
+  cursor: none;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+}
+
+body {
+  font-family: 'DM Mono', 'IBM Plex Mono', monospace;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Body is the outer snap container — scrolls only between sections */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+#root {
+  height: auto;
+}
+
+/* ─── Snap sections ────────────────────────────────────────────────────── */
+/* Each section is exactly one viewport tall and never bleeds into the next */
+.snap-section {
+  height: 100vh;
+  max-height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow: hidden;          /* outer edge: clipped to viewport */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Inner scroll area for sections with more content than fits in 100vh */
+.section-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 2rem;   /* clears the sticky header's fade gradient */
+  scrollbar-width: none;
+}
+.section-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sticky heading bar — stays pinned at top of its snap-section as inner content scrolls */
+.section-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-bg);
+  /* Subtle bottom fade so heading reads over scrolled content below it */
+  padding-bottom: 1px;
+}
+.section-header-sticky::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ─── Marquee ──────────────────────────────────────────────────────────── */
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.marquee-left  { animation: marquee-left  30s linear infinite; }
+.marquee-right { animation: marquee-right 35s linear infinite; }
+.marquee-container:hover .marquee-left,
+.marquee-container:hover .marquee-right {
+  animation-play-state: paused;
+}
+
+/* ─── Experience hover underline ──────────────────────────────────────── */
+.exp-link { position: relative; display: inline-block; }
+.exp-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.exp-item:hover .exp-link::after { transform: scaleX(1); }
+
+/* ─── Skeleton pulse ──────────────────────────────────────────────────── */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.6; }
+}
+.skeleton {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+  background-color: var(--color-muted);
+  border-radius: 2px;
+}
+
+/* ─── Blinking cursor ────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+/* ─── Scrollbar (outer body) ─────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: var(--color-bg); }
+::-webkit-scrollbar-thumb  { background: var(--color-muted); }
+
+/* ─── Mobile ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  * { cursor: auto; }
+  body { scroll-snap-type: y mandatory; }
+}
