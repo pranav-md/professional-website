@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import CustomCursor from './components/CustomCursor'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -26,11 +26,19 @@ function Portfolio() {
   )
 }
 
+function useRoute() {
+  const getRoute = () => window.location.hash.replace(/^#\/?/, '') || ''
+  const [route, setRoute] = useState(getRoute)
+  useEffect(() => {
+    const onHash = () => setRoute(getRoute())
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+  return route
+}
+
 export default function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Portfolio />} />
-      <Route path="/game" element={<FlashGame />} />
-    </Routes>
-  )
+  const route = useRoute()
+  if (route === 'game') return <FlashGame />
+  return <Portfolio />
 }
