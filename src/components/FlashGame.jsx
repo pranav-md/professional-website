@@ -17,7 +17,7 @@ function useHoldButton(onQuickRelease, onHoldComplete, disabled) {
     e.preventDefault()
     pressStartRef.current = performance.now()
 
-    const HOLD_MS = 1000
+    const HOLD_MS = 400
 
     holdTimerRef.current = setTimeout(() => {
       if (pressStartRef.current !== null) {
